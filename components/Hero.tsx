@@ -1,0 +1,42 @@
+import Image from "next/image";
+import { hero, site } from "@/lib/content";
+
+export function Hero() {
+  return (
+    <section
+      className="relative flex min-h-[100svh] items-end justify-center overflow-hidden"
+      aria-label="Introduction"
+    >
+      <Image
+        src={hero.image}
+        alt={hero.alt}
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-purple via-purple/70 to-purple/20"
+        aria-hidden
+      />
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-20 pt-32 text-center sm:px-10 sm:pb-28 sm:text-left">
+        <p className="mb-4 font-sans text-xs font-medium uppercase tracking-[0.35em] text-purple-light">
+          {site.heroSubline}
+        </p>
+        <h1 className="font-serif text-5xl font-light tracking-tight text-white sm:text-7xl md:text-8xl">
+          {site.name}
+        </h1>
+        <p className="mt-5 max-w-xl font-sans text-base text-purple-mist sm:text-lg">
+          {site.tagline}
+        </p>
+        <a
+          href="#neighborhood"
+          className="mt-14 inline-flex flex-col items-center gap-2 text-purple-light transition-colors hover:text-white sm:items-start"
+        >
+          <span className="text-xs uppercase tracking-[0.25em]">Explore</span>
+          <span className="block h-10 w-px bg-purple-light/80" aria-hidden />
+        </a>
+      </div>
+    </section>
+  );
+}

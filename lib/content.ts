@@ -163,7 +163,7 @@ export const neighborhoodLabels = [
 
 export const about = {
   title: "About",
-  body: `Cascade Crest is a for-profit Washington State rental company backed by a small group of private investors. We steward a single home in Portland’s University Park neighborhood—on the bluff, steps from the University of Portland, with TriMet stops and bike routes nearby and a short trip to St. Johns, the Willamette, and Cathedral Park.
+  body: `Cascade Crest is a for-profit Washington State rental company backed by a small group of private investors. We steward homes in Portland’s University Park neighborhood—on the bluff, steps from the University of Portland, with TriMet stops and bike routes nearby and a short trip to St. Johns, the Willamette, and Cathedral Park.
 
 This site shares the spirit of the place—not a listing portal. We do not publish our property address or accept inquiries through this website.`,
 } as const;

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Fraunces } from "next/font/google";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { metadataDescription, hero, site } from "@/lib/content";
 import "./globals.css";
 
@@ -18,6 +19,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   title: `${site.name} | ${site.legalName}`,
   description: metadataDescription,
+  robots: "index, follow, noai, noimageai",
   openGraph: {
     title: `${site.name} | ${site.legalName}`,
     description: metadataDescription,
@@ -47,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${fraunces.variable} scroll-smooth`}>
       <body className="min-h-screen antialiased">{children}</body>
+      <GoogleAnalytics />
     </html>
   );
 }

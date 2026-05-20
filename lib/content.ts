@@ -5,6 +5,14 @@ export const site = {
   heroSubline: "University Park · The Bluff · Steps from campus",
 } as const;
 
+/** Wikimedia Commons — CC BY-SA / CC BY (attribution in footer). */
+const wikimedia = {
+  universityOfPortland:
+    "https://upload.wikimedia.org/wikipedia/commons/8/85/University_of_Portland_%28497062163%29.jpg",
+  universityParkNeighborhood:
+    "https://upload.wikimedia.org/wikipedia/commons/5/5e/University_Park_%28Portland%2C_Oregon%29.jpg",
+} as const;
+
 /** Verified aerial / drone-style Unsplash assets (HTTP 200 on images.unsplash.com). */
 const aerial = {
   stJohnsBridge:
@@ -53,8 +61,8 @@ export const nearbyPlaces: NearbyPlace[] = [
     name: "University of Portland",
     blurb:
       "Campus life and bluff-top walks—just steps from your door.",
-    image: aerial.portlandWaterfront,
-    alt: "Aerial view of Portland neighborhoods and the Willamette bluff near University Park",
+    image: wikimedia.universityOfPortland,
+    alt: "University of Portland campus on the bluff with lawns and historic buildings, Portland Oregon",
   },
   {
     name: "Waud Bluff Trail",
@@ -173,7 +181,7 @@ export const galleryImages: GalleryImage[] = [
 
 export const neighborhoodLabels = [
   { label: "The Bluff", image: aerial.riverAndBridges },
-  { label: "University Park", image: aerial.portlandWaterfront },
+  { label: "University Park", image: wikimedia.universityParkNeighborhood },
   { label: "St. Johns", image: aerial.stJohnsBridge },
   { label: "Portland & the Willamette", image: aerial.willametteRiver },
 ] as const;
@@ -189,7 +197,8 @@ export const footer = {
   affiliation:
     "Not affiliated with the University of Portland.",
   registration: "Registered in Washington State · Property in Oregon",
-  photoCredit: "Aerial and landscape photography via Unsplash.",
+  photoCredit:
+    "University of Portland & University Park: Wikimedia Commons. Aerial and other photos: Unsplash.",
 } as const;
 
 export const metadataDescription =

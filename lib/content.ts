@@ -1,15 +1,3 @@
-/** Wikimedia Commons — CC BY-SA 3.0 (attribution in footer). */
-const wikimedia = {
-  stJohnsBridgeProfile:
-    "https://upload.wikimedia.org/wikipedia/commons/0/07/StJohnsBridge.jpg",
-  cathedralArches:
-    "https://upload.wikimedia.org/wikipedia/commons/e/e1/Cathedral_Park_St_Johns_Bridge_-_Portland_Oregon.jpg",
-  cathedralParkRiver:
-    "https://upload.wikimedia.org/wikipedia/commons/6/69/Cathedral_Park_Portland_Oregon_%2837819765346%29.jpg",
-  cathedralParkAnchor:
-    "https://upload.wikimedia.org/wikipedia/commons/2/2a/St_Johns_Bridge_from_Cathedral_Park_back_of_anchor_-_Portland,_Oregon.jpg",
-} as const;
-
 export const site = {
   name: "Cascade Crest",
   legalName: "Cascade Crest LLC",
@@ -17,10 +5,34 @@ export const site = {
   heroSubline: "University Park · The Bluff · Steps from campus",
 } as const;
 
+/** Verified aerial / drone-style Unsplash assets (HTTP 200 on images.unsplash.com). */
+const aerial = {
+  stJohnsBridge:
+    "https://images.unsplash.com/photo-1543813425-d5ce8a18cd79?auto=format&fit=crop&w=2400&q=85",
+  portlandBridgeHood:
+    "https://images.unsplash.com/photo-1774464695572-fcbb4171ff76?auto=format&fit=crop&w=1200&q=80",
+  portlandSkyline:
+    "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80",
+  portlandWaterfront:
+    "https://images.unsplash.com/photo-1567984828708-5750f8acb181?auto=format&fit=crop&w=1200&q=80",
+  riverAndBridges:
+    "https://images.unsplash.com/photo-1587590102356-3b3454479809?auto=format&fit=crop&w=1200&q=80",
+  willametteRiver:
+    "https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1200&q=80",
+  bridgeOverWater:
+    "https://images.unsplash.com/photo-1755976547060-32a82c6d18a9?auto=format&fit=crop&w=1200&q=80",
+  portlandHills:
+    "https://images.unsplash.com/photo-1573828562803-1d582aa6ab6a?auto=format&fit=crop&w=1200&q=80",
+  nightSkylineBridge:
+    "https://images.unsplash.com/photo-1635170870336-67546b863d13?auto=format&fit=crop&w=1200&q=80",
+  cityAndMountain:
+    "https://images.unsplash.com/photo-1575421377056-f78e26f4b173?auto=format&fit=crop&w=1200&q=80",
+} as const;
+
 export const hero = {
-  image: wikimedia.stJohnsBridgeProfile,
-  alt: "St. Johns Bridge spanning the Willamette River with Forest Park hills beyond, Portland Oregon",
-  credit: "Cacophony / Wikimedia Commons (CC BY-SA 3.0)",
+  image: aerial.stJohnsBridge,
+  alt: "Aerial view of the St. Johns Bridge through fog above the Willamette River, Portland Oregon",
+  credit: "Photo via Unsplash",
 } as const;
 
 export const proximity = {
@@ -41,40 +53,36 @@ export const nearbyPlaces: NearbyPlace[] = [
     name: "University of Portland",
     blurb:
       "Campus life and bluff-top walks—just steps from your door.",
-    image:
-      "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80",
-    alt: "Tree-lined campus walkway on a green hillside",
+    image: aerial.portlandWaterfront,
+    alt: "Aerial view of Portland neighborhoods and the Willamette bluff near University Park",
   },
   {
     name: "Waud Bluff Trail",
     blurb:
       "Wooded switchbacks from the bluff down to the Willamette and the greenway.",
-    image:
-      "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=80",
-    alt: "Hiker on a sunlit forest trail through tall trees",
+    image: aerial.riverAndBridges,
+    alt: "Aerial view of the Willamette River, bridges, and North Portland from above the bluff",
   },
   {
     name: "The Willamette",
     blurb:
       "River views, waterfront paths, and the North Portland Greenway below the bluff.",
-    image:
-      "https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1200&q=80",
-    alt: "Aerial view of a wide river winding through green hills",
+    image: aerial.willametteRiver,
+    alt: "Aerial view of a wide river winding through green Pacific Northwest hills",
   },
   {
     name: "St. Johns",
     blurb:
       "Village shops, dining, and a weekend farmers market—small-town feel in the city.",
-    image:
-      "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
-    alt: "Charming small-town main street storefronts",
+    image: aerial.portlandBridgeHood,
+    alt: "Aerial view of Portland with bridges over the Willamette and Mount Hood beyond",
   },
   {
     name: "Cathedral Park",
     blurb:
       "St. Johns Bridge, riverfront lawns, and seasonal events beneath the towers.",
-    image: wikimedia.cathedralArches,
-    alt: "View underneath the St. Johns Bridge through Cathedral Park’s gothic concrete arches, Portland Oregon",
+    image: aerial.bridgeOverWater,
+    alt: "Aerial view of a bridge crossing the Willamette River in North Portland",
   },
   {
     name: "Lombard & everyday Portland",
@@ -110,9 +118,8 @@ export const transportation = {
       icon: "walk" as const,
     },
   ],
-  image:
-    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=80",
-  alt: "Cyclist on a road bike outdoors",
+  image: aerial.portlandHills,
+  alt: "Aerial view of Portland hillside neighborhoods, trees, and city streets",
 } as const;
 
 export type GalleryImage = {
@@ -123,57 +130,52 @@ export type GalleryImage = {
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: wikimedia.cathedralParkAnchor,
-    alt: "St. Johns Bridge viewed from Cathedral Park along the Willamette River, Portland Oregon",
+    src: aerial.portlandBridgeHood,
+    alt: "Aerial view of Portland bridges, downtown, and Mount Hood",
     span: "wide",
   },
   {
-    src: wikimedia.cathedralParkRiver,
-    alt: "St. Johns Bridge above Cathedral Park and the Willamette River, Portland Oregon",
-    span: "wide",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
-    alt: "Misty green valley and forested hills at dawn",
+    src: aerial.stJohnsBridge,
+    alt: "Aerial view of the St. Johns Bridge and the Willamette River",
     span: "tall",
   },
   {
-    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80",
-    alt: "Layered mountain ridges at golden hour",
-    span: "normal",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1200&q=80",
-    alt: "Sunlight through green leaves in a Pacific Northwest forest",
-    span: "normal",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=80",
-    alt: "Portland streetcar and urban street at twilight",
+    src: aerial.portlandSkyline,
+    alt: "Aerial view of the Portland skyline with Mount Hood in the distance",
     span: "wide",
   },
   {
-    src: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80",
-    alt: "Dogs running through a green park meadow",
+    src: aerial.riverAndBridges,
+    alt: "Aerial drone view of the Willamette River and Portland bridges",
     span: "normal",
   },
   {
-    src: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80",
-    alt: "Still lake reflecting mountains and sky",
+    src: aerial.portlandWaterfront,
+    alt: "Aerial view of Portland buildings along the Willamette waterfront",
+    span: "normal",
+  },
+  {
+    src: aerial.willametteRiver,
+    alt: "Aerial view of the Willamette River and surrounding green landscape",
+    span: "normal",
+  },
+  {
+    src: aerial.bridgeOverWater,
+    alt: "Aerial view of a bridge spanning the Willamette River",
     span: "tall",
   },
   {
-    src: "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=800&q=80",
-    alt: "Mountain lake with pine forest and morning mist",
+    src: aerial.nightSkylineBridge,
+    alt: "Aerial view of Portland’s skyline and bridges at night",
     span: "normal",
   },
 ];
 
 export const neighborhoodLabels = [
-  { label: "The Bluff", image: hero.image },
-  { label: "University Park", image: nearbyPlaces[0].image },
-  { label: "St. Johns", image: nearbyPlaces[3].image },
-  { label: "Portland & the Willamette", image: nearbyPlaces[2].image },
+  { label: "The Bluff", image: aerial.riverAndBridges },
+  { label: "University Park", image: aerial.portlandWaterfront },
+  { label: "St. Johns", image: aerial.stJohnsBridge },
+  { label: "Portland & the Willamette", image: aerial.willametteRiver },
 ] as const;
 
 export const about = {
@@ -187,8 +189,7 @@ export const footer = {
   affiliation:
     "Not affiliated with the University of Portland.",
   registration: "Registered in Washington State · Property in Oregon",
-  photoCredit:
-    "St. Johns Bridge & Cathedral Park: Wikimedia Commons (CC BY-SA 3.0). Other photos: Unsplash License.",
+  photoCredit: "Aerial and landscape photography via Unsplash.",
 } as const;
 
 export const metadataDescription =

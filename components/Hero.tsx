@@ -31,10 +31,9 @@ export function Hero() {
         </p>
         <a
           href="#neighborhood"
-          className="mt-14 inline-flex flex-col items-center gap-2 text-purple-light transition-colors hover:text-white sm:items-start"
+          className="mt-14 inline-block text-xs uppercase tracking-[0.25em] text-purple-light transition-colors hover:text-white"
         >
-          <span className="text-xs uppercase tracking-[0.25em]">Explore</span>
-          <span className="block h-10 w-px bg-purple-light/80" aria-hidden />
+          Explore
         </a>
       </div>
     </section>

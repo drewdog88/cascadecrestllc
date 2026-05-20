@@ -176,4 +176,4 @@ export const footer = {
 } as const;
 
 export const metadataDescription =
-  "Cascade Crest LLC—a Washington-based rental company with a home in Portland’s University Park, on the bluff near the University of Portland.";
+  "Cascade Crest LLC—a Washington-based rental company with homes in Portland’s University Park, on the bluff near the University of Portland.";

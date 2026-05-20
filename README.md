@@ -68,7 +68,7 @@ Two layers work together:
 
 - **`/robots.txt`** — asks known AI crawlers (GPTBot, ClaudeBot, etc.) not to crawl; still allows normal search bots.
 - **Page metadata** — `noai, noimageai` hints where supported.
-- **Security headers** — basic hardening in `next.config.ts`.
+- **Security headers** — applied on every page via `proxy.ts` and `lib/security-headers.ts`.
 
 This is polite blocking only; bad actors can ignore `robots.txt`.
 

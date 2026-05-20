@@ -4,7 +4,37 @@ A minimal, image-forward marketing site for Cascade Crest LLC—a Washington Sta
 
 Built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**, optimized for deployment on [Vercel](https://vercel.com).
 
-## Local development
+## Local development (Windows)
+
+Recommended path: **`D:\Gitlocal\cascadecrestllc`**
+
+```powershell
+cd D:\Gitlocal\cascadecrestllc
+npm install
+npm run dev
+```
+
+**First-time setup or move from Documents:** run [`scripts/setup-gitlocal.ps1`](scripts/setup-gitlocal.ps1):
+
+```powershell
+Set-ExecutionPolicy -Scope Process Bypass
+cd D:\Gitlocal\cascadecrestllc
+.\scripts\setup-gitlocal.ps1
+```
+
+If the repo is not on your machine yet, clone into Gitlocal first:
+
+```powershell
+mkdir D:\Gitlocal -Force
+cd D:\Gitlocal
+git clone https://github.com/drewdog88/cascadecrestllc.git
+cd cascadecrestllc
+.\scripts\setup-gitlocal.ps1
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+## Local development (macOS / Linux)
 
 ```bash
 npm install

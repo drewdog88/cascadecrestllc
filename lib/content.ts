@@ -1,3 +1,15 @@
+/** Wikimedia Commons — CC BY-SA 3.0 (attribution in footer). */
+const wikimedia = {
+  stJohnsBridgeProfile:
+    "https://upload.wikimedia.org/wikipedia/commons/0/07/StJohnsBridge.jpg",
+  cathedralArches:
+    "https://upload.wikimedia.org/wikipedia/commons/e/e1/Cathedral_Park_St_Johns_Bridge_-_Portland_Oregon.jpg",
+  cathedralParkRiver:
+    "https://upload.wikimedia.org/wikipedia/commons/6/69/Cathedral_Park_Portland_Oregon_%2837819765346%29.jpg",
+  cathedralParkAnchor:
+    "https://upload.wikimedia.org/wikipedia/commons/2/2a/St_Johns_Bridge_from_Cathedral_Park_back_of_anchor_-_Portland,_Oregon.jpg",
+} as const;
+
 export const site = {
   name: "Cascade Crest",
   legalName: "Cascade Crest LLC",
@@ -6,10 +18,9 @@ export const site = {
 } as const;
 
 export const hero = {
-  image:
-    "https://images.unsplash.com/photo-1445308394109-4ec2920981b1?auto=format&fit=crop&w=2400&q=85",
-  alt: "St. Johns Bridge spanning the Willamette River, Portland Oregon",
-  credit: "Photo via Unsplash",
+  image: wikimedia.stJohnsBridgeProfile,
+  alt: "St. Johns Bridge spanning the Willamette River with Forest Park hills beyond, Portland Oregon",
+  credit: "Cacophony / Wikimedia Commons (CC BY-SA 3.0)",
 } as const;
 
 export const proximity = {
@@ -62,9 +73,8 @@ export const nearbyPlaces: NearbyPlace[] = [
     name: "Cathedral Park",
     blurb:
       "St. Johns Bridge, riverfront lawns, and seasonal events beneath the towers.",
-    image:
-      "https://images.unsplash.com/photo-1445308394109-4ec2920981b1?auto=format&fit=crop&w=1200&q=80",
-    alt: "Steel suspension bridge over a river on an overcast day",
+    image: wikimedia.cathedralArches,
+    alt: "View underneath the St. Johns Bridge through Cathedral Park’s gothic concrete arches, Portland Oregon",
   },
   {
     name: "Lombard & everyday Portland",
@@ -113,8 +123,13 @@ export type GalleryImage = {
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80",
-    alt: "Portland city skyline with Mount Hood in the distance",
+    src: wikimedia.cathedralParkAnchor,
+    alt: "St. Johns Bridge viewed from Cathedral Park along the Willamette River, Portland Oregon",
+    span: "wide",
+  },
+  {
+    src: wikimedia.cathedralParkRiver,
+    alt: "St. Johns Bridge above Cathedral Park and the Willamette River, Portland Oregon",
     span: "wide",
   },
   {
@@ -172,7 +187,8 @@ export const footer = {
   affiliation:
     "Not affiliated with the University of Portland.",
   registration: "Registered in Washington State · Property in Oregon",
-  photoCredit: "Photography via Unsplash (license-free for web use).",
+  photoCredit:
+    "St. Johns Bridge & Cathedral Park: Wikimedia Commons (CC BY-SA 3.0). Other photos: Unsplash License.",
 } as const;
 
 export const metadataDescription =

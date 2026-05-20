@@ -4,7 +4,7 @@ const contentSecurityPolicy = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com data: blob:",
+  "img-src 'self' https://images.unsplash.com https://upload.wikimedia.org https://www.google-analytics.com https://www.googletagmanager.com data: blob:",
   "font-src 'self'",
   "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://www.googletagmanager.com https://api.vercel.com",
   "frame-ancestors 'none'",

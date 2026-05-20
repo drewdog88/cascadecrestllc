@@ -7,8 +7,8 @@ export const site = {
 
 export const hero = {
   image:
-    "https://images.unsplash.com/photo-1605218454466-1ec4dffb371c?auto=format&fit=crop&w=2400&q=85",
-  alt: "St. Johns Bridge spanning the Willamette River at dusk, Portland Oregon",
+    "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=2400&q=85",
+  alt: "Gothic bridge towers above the Willamette River at dusk, Portland Oregon",
   credit: "Photo via Unsplash",
 } as const;
 
@@ -39,16 +39,16 @@ export const nearbyPlaces: NearbyPlace[] = [
     blurb:
       "Wooded switchbacks from the bluff down to the Willamette and the greenway.",
     image:
-      "https://images.unsplash.com/photo-1441974231530-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
-    alt: "Sunlit forest trail through tall trees",
+      "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=80",
+    alt: "Hiker on a sunlit forest trail through tall trees",
   },
   {
     name: "The Willamette",
     blurb:
       "River views, waterfront paths, and the North Portland Greenway below the bluff.",
     image:
-      "https://images.unsplash.com/photo-1583422409513-18848da3b498?auto=format&fit=crop&w=1200&q=80",
-    alt: "Calm river water reflecting sky and shoreline trees",
+      "https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1200&q=80",
+    alt: "Aerial view of a wide river winding through green hills",
   },
   {
     name: "St. Johns",
@@ -63,8 +63,8 @@ export const nearbyPlaces: NearbyPlace[] = [
     blurb:
       "St. Johns Bridge, riverfront lawns, and seasonal events beneath the towers.",
     image:
-      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=1200&q=80",
-    alt: "Gothic bridge towers rising above a riverside park",
+      "https://images.unsplash.com/photo-1445308394109-4ec2920981b1?auto=format&fit=crop&w=1200&q=80",
+    alt: "Steel suspension bridge over a river on an overcast day",
   },
   {
     name: "Lombard & everyday Portland",
@@ -101,8 +101,8 @@ export const transportation = {
     },
   ],
   image:
-    "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=1600&q=80",
-  alt: "Cyclist riding along a tree-lined urban street",
+    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1600&q=80",
+  alt: "Cyclist on a road bike outdoors",
 } as const;
 
 export type GalleryImage = {
@@ -113,13 +113,13 @@ export type GalleryImage = {
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: "https://images.unsplash.com/photo-1516644608687-fd9bbfdda04e?auto=format&fit=crop&w=1200&q=80",
+    src: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80",
     alt: "Portland city skyline with Mount Hood in the distance",
     span: "wide",
   },
   {
-    src: "https://images.unsplash.com/photo-1605218454466-1ec4dffb371c?auto=format&fit=crop&w=800&q=80",
-    alt: "St. Johns Bridge over the Willamette River",
+    src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80",
+    alt: "Misty green valley and forested hills at dawn",
     span: "tall",
   },
   {
@@ -128,8 +128,8 @@ export const galleryImages: GalleryImage[] = [
     span: "normal",
   },
   {
-    src: "https://images.unsplash.com/photo-1473448912269-2881d5e329a9?auto=format&fit=crop&w=1200&q=80",
-    alt: "Pacific Northwest forest canopy from below",
+    src: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1200&q=80",
+    alt: "Sunlight through green leaves in a Pacific Northwest forest",
     span: "normal",
   },
   {
@@ -148,8 +148,8 @@ export const galleryImages: GalleryImage[] = [
     span: "tall",
   },
   {
-    src: "https://images.unsplash.com/photo-1493246507134-91ee19c0c48b?auto=format&fit=crop&w=800&q=80",
-    alt: "Alpine lake surrounded by evergreen forest",
+    src: "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=800&q=80",
+    alt: "Mountain lake with pine forest and morning mist",
     span: "normal",
   },
 ];

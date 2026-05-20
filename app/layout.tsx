@@ -48,8 +48,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${dmSans.variable} ${fraunces.variable} scroll-smooth`}>
-      <body className="min-h-screen antialiased">{children}</body>
-      <GoogleAnalytics />
+      <body className="min-h-screen antialiased">
+        {children}
+        <GoogleAnalytics />
+      </body>
     </html>
   );
 }

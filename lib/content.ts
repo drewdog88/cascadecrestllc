@@ -68,8 +68,8 @@ export const nearbyPlaces: NearbyPlace[] = [
     name: "Waud Bluff Trail",
     blurb:
       "Wooded switchbacks from the bluff down to the Willamette and the greenway.",
-    image: aerial.riverAndBridges,
-    alt: "Aerial view of the Willamette River, bridges, and North Portland from above the bluff",
+    image: "/images/waud-bluff-trail.png",
+    alt: "Waud Bluff trail segment along the Willamette Greenway, connecting University of Portland River campus and Swan Island to Willamette Boulevard",
   },
   {
     name: "The Willamette",
@@ -198,7 +198,7 @@ export const footer = {
     "Not affiliated with the University of Portland.",
   registration: "Registered in Washington State · Property in Oregon",
   photoCredit:
-    "University of Portland & University Park: Wikimedia Commons. Aerial and other photos: Unsplash.",
+    "Waud Bluff trail map: npGREENWAY. University of Portland & University Park: Wikimedia Commons. Other photos: Unsplash.",
 } as const;
 
 export const metadataDescription =

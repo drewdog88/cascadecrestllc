@@ -7,8 +7,8 @@ export const site = {
 
 export const hero = {
   image:
-    "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=2400&q=85",
-  alt: "Gothic bridge towers above the Willamette River at dusk, Portland Oregon",
+    "https://images.unsplash.com/photo-1445308394109-4ec2920981b1?auto=format&fit=crop&w=2400&q=85",
+  alt: "St. Johns Bridge spanning the Willamette River, Portland Oregon",
   credit: "Photo via Unsplash",
 } as const;
 

@@ -71,6 +71,21 @@ export function Neighborhood() {
                     <p className="mt-3 text-base leading-relaxed text-purple-medium">
                       {place.blurb}
                     </p>
+                    {place.credit ? (
+                      <p
+                        className={`mt-3 text-xs text-purple-medium/80 ${reversed ? "md:text-right" : ""}`}
+                      >
+                        Trail map courtesy of{" "}
+                        <a
+                          href={place.credit.url}
+                          className="underline decoration-purple-medium/40 underline-offset-2 transition-colors hover:text-purple"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {place.credit.name}
+                        </a>
+                      </p>
+                    ) : null}
                   </div>
                 </article>
               </ScrollReveal>

@@ -9,7 +9,21 @@ export function SiteFooter() {
         <p className="font-serif text-2xl text-white">{site.legalName}</p>
         <p>{footer.registration}</p>
         <p className="max-w-md text-purple-light">{footer.affiliation}</p>
-        <p className="text-xs text-purple-light/80">{footer.photoCredit}</p>
+        <ul className="max-w-lg space-y-1 text-xs text-purple-light/80">
+          {footer.photoCredits.map((item) => (
+            <li key={item.label}>
+              {item.label}:{" "}
+              <a
+                href={item.url}
+                className="underline decoration-purple-light/50 underline-offset-2 transition-colors hover:text-white"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
         <p className="text-xs text-purple-light/60">
           © {year} {site.legalName}
         </p>

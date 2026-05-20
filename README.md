@@ -58,7 +58,7 @@ All copy and image URLs live in [`lib/content.ts`](lib/content.ts). Update text,
 
 ## Photography
 
-Launch images are sourced from [Unsplash](https://unsplash.com) (free for web use). See `footer.photoCredit` in content. Replace with your own photography when ready.
+Launch images are sourced from [Unsplash](https://unsplash.com), [Wikimedia Commons](https://commons.wikimedia.org/), and [npGREENWAY](https://npgreenway.org/) where noted. See `footer.photoCredits` in `lib/content.ts`.
 
 ## Bot and AI crawler protection
 

@@ -49,11 +49,17 @@ export const proximity = {
     "University Park on the bluff—between the University of Portland and St. Johns.",
 } as const;
 
+export type ImageCredit = {
+  name: string;
+  url: string;
+};
+
 export type NearbyPlace = {
   name: string;
   blurb: string;
   image: string;
   alt: string;
+  credit?: ImageCredit;
 };
 
 export const nearbyPlaces: NearbyPlace[] = [
@@ -70,6 +76,10 @@ export const nearbyPlaces: NearbyPlace[] = [
       "Wooded switchbacks from the bluff down to the Willamette and the greenway.",
     image: "/images/waud-bluff-trail.png",
     alt: "Waud Bluff trail segment along the Willamette Greenway, connecting University of Portland River campus and Swan Island to Willamette Boulevard",
+    credit: {
+      name: "npGREENWAY",
+      url: "https://npgreenway.org/waud-bluff-segment-update/",
+    },
   },
   {
     name: "The Willamette",
@@ -197,8 +207,23 @@ export const footer = {
   affiliation:
     "Not affiliated with the University of Portland.",
   registration: "Registered in Washington State · Property in Oregon",
-  photoCredit:
-    "Waud Bluff trail map: npGREENWAY. University of Portland & University Park: Wikimedia Commons. Other photos: Unsplash.",
+  photoCredits: [
+    {
+      label: "Waud Bluff trail map",
+      name: "npGREENWAY",
+      url: "https://npgreenway.org/waud-bluff-segment-update/",
+    },
+    {
+      label: "University of Portland & University Park photos",
+      name: "Wikimedia Commons",
+      url: "https://commons.wikimedia.org/",
+    },
+    {
+      label: "Other photos",
+      name: "Unsplash",
+      url: "https://unsplash.com/",
+    },
+  ],
 } as const;
 
 export const metadataDescription =

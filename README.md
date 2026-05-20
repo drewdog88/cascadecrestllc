@@ -93,18 +93,16 @@ In Vercel: **Firewall → Rules → enable BotID Deep Analysis** (optional, paid
 
 ## Google Analytics (GA4)
 
-The site loads GA4 when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set (free standard GA4).
+GA4 loads **only on Vercel production** (`www.cascadecrestllc.com`). Local dev and preview deploys do not send analytics.
 
 1. In [Google Analytics](https://analytics.google.com), create a **GA4** property for `cascadecrestllc.com`.
 2. **Admin → Data streams → Web** → copy the **Measurement ID** (`G-XXXXXXXXXX`).
 3. **Vercel** → project **cascadecrestllc** → **Settings → Environment Variables**:
    - Name: `NEXT_PUBLIC_GA_MEASUREMENT_ID`
    - Value: your `G-…` ID
-   - Environments: Production (and Preview if you want)
+   - Environments: **Production** only
 4. Redeploy production (or push to `main`).
 5. In GA4, open **Reports → Realtime** to confirm hits (may take a few minutes).
-
-Local dev (optional): create `.env.local` with the same variable. Analytics is omitted when the variable is unset.
 
 ## Deploy to Vercel
 

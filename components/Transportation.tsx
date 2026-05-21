@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { transportation } from "@/lib/content";
-import { ScrollReveal } from "./ScrollReveal";
 
 function TransportIcon({ type }: { type: "bus" | "bike" | "walk" }) {
   const paths = {
@@ -52,7 +51,7 @@ export function Transportation() {
     >
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <ScrollReveal>
+          <div className="reveal">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-teal">
               Getting around
             </p>
@@ -80,9 +79,9 @@ export function Transportation() {
                 </li>
               ))}
             </ul>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal className="relative aspect-[3/4] overflow-hidden rounded-sm lg:aspect-[4/5]">
+          <div className="reveal relative aspect-[3/4] overflow-hidden rounded-sm lg:aspect-[4/5]">
             <Image
               src={transportation.image}
               alt={transportation.alt}
@@ -94,7 +93,7 @@ export function Transportation() {
               className="absolute inset-0 bg-gradient-to-t from-purple/50 to-transparent"
               aria-hidden
             />
-          </ScrollReveal>
+          </div>
         </div>
       </div>
     </section>

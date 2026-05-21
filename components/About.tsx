@@ -1,5 +1,4 @@
 import { about } from "@/lib/content";
-import { ScrollReveal } from "./ScrollReveal";
 
 export function About() {
   const paragraphs = about.body.split("\n\n");
@@ -11,7 +10,7 @@ export function About() {
       aria-labelledby="about-heading"
     >
       <div className="mx-auto max-w-3xl px-6 text-center sm:px-10">
-        <ScrollReveal>
+        <div className="reveal">
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-teal">
             {about.title}
           </p>
@@ -26,7 +25,7 @@ export function About() {
               <p key={i}>{paragraph}</p>
             ))}
           </div>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   );

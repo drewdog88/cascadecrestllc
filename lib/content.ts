@@ -5,40 +5,24 @@ export const site = {
   heroSubline: "University Park · The Bluff · Steps from campus",
 } as const;
 
-/** Wikimedia Commons — CC BY-SA / CC BY (attribution in footer). */
-const wikimedia = {
-  universityOfPortland:
-    "https://upload.wikimedia.org/wikipedia/commons/8/85/University_of_Portland_%28497062163%29.jpg",
-  universityParkNeighborhood:
-    "https://upload.wikimedia.org/wikipedia/commons/5/5e/University_Park_%28Portland%2C_Oregon%29.jpg",
-} as const;
-
-/** Verified aerial / drone-style Unsplash assets (HTTP 200 on images.unsplash.com). */
-const aerial = {
-  stJohnsBridge:
-    "https://images.unsplash.com/photo-1543813425-d5ce8a18cd79?auto=format&fit=crop&w=2400&q=85",
-  portlandBridgeHood:
-    "https://images.unsplash.com/photo-1774464695572-fcbb4171ff76?auto=format&fit=crop&w=1200&q=80",
-  portlandSkyline:
-    "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80",
-  portlandWaterfront:
-    "https://images.unsplash.com/photo-1567984828708-5750f8acb181?auto=format&fit=crop&w=1200&q=80",
-  riverAndBridges:
-    "https://images.unsplash.com/photo-1587590102356-3b3454479809?auto=format&fit=crop&w=1200&q=80",
-  willametteRiver:
-    "https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1200&q=80",
-  bridgeOverWater:
-    "https://images.unsplash.com/photo-1755976547060-32a82c6d18a9?auto=format&fit=crop&w=1200&q=80",
-  portlandHills:
-    "https://images.unsplash.com/photo-1573828562803-1d582aa6ab6a?auto=format&fit=crop&w=1200&q=80",
-  nightSkylineBridge:
-    "https://images.unsplash.com/photo-1635170870336-67546b863d13?auto=format&fit=crop&w=1200&q=80",
-  cityAndMountain:
-    "https://images.unsplash.com/photo-1575421377056-f78e26f4b173?auto=format&fit=crop&w=1200&q=80",
+const photos = {
+  stJohnsBridge: "/images/photos/st-johns-bridge.webp",
+  portlandBridgeHood: "/images/photos/portland-bridge-hood.webp",
+  portlandSkyline: "/images/photos/portland-skyline.webp",
+  portlandWaterfront: "/images/photos/portland-waterfront.webp",
+  riverAndBridges: "/images/photos/river-and-bridges.webp",
+  willametteRiver: "/images/photos/willamette-river.webp",
+  bridgeOverWater: "/images/photos/bridge-over-water.webp",
+  portlandHills: "/images/photos/portland-hills.webp",
+  nightSkylineBridge: "/images/photos/night-skyline-bridge.webp",
+  portlandCafeLatte: "/images/photos/portland-cafe-latte.webp",
+  universityOfPortland: "/images/photos/university-of-portland.webp",
+  universityParkNeighborhood: "/images/photos/university-park-neighborhood.webp",
+  waudBluffTrail: "/images/photos/waud-bluff-trail.webp",
 } as const;
 
 export const hero = {
-  image: aerial.stJohnsBridge,
+  image: photos.stJohnsBridge,
   alt: "Aerial view of the St. Johns Bridge through fog above the Willamette River, Portland Oregon",
   credit: "Photo via Unsplash",
 } as const;
@@ -67,14 +51,14 @@ export const nearbyPlaces: NearbyPlace[] = [
     name: "University of Portland",
     blurb:
       "Campus life and bluff-top walks—just steps from your door.",
-    image: wikimedia.universityOfPortland,
+    image: photos.universityOfPortland,
     alt: "University of Portland campus on the bluff with lawns and historic buildings, Portland Oregon",
   },
   {
     name: "Waud Bluff Trail",
     blurb:
       "Wooded switchbacks from the bluff down to the Willamette and the greenway.",
-    image: "/images/waud-bluff-trail.png",
+    image: photos.waudBluffTrail,
     alt: "Waud Bluff trail segment along the Willamette Greenway, connecting University of Portland River campus and Swan Island to Willamette Boulevard",
     credit: {
       name: "npGREENWAY",
@@ -85,29 +69,28 @@ export const nearbyPlaces: NearbyPlace[] = [
     name: "The Willamette",
     blurb:
       "River views, waterfront paths, and the North Portland Greenway below the bluff.",
-    image: aerial.willametteRiver,
+    image: photos.willametteRiver,
     alt: "Aerial view of a wide river winding through green Pacific Northwest hills",
   },
   {
     name: "St. Johns",
     blurb:
       "Village shops, dining, and a weekend farmers market—small-town feel in the city.",
-    image: aerial.portlandBridgeHood,
+    image: photos.portlandBridgeHood,
     alt: "Aerial view of Portland with bridges over the Willamette and Mount Hood beyond",
   },
   {
     name: "Cathedral Park",
     blurb:
       "St. Johns Bridge, riverfront lawns, and seasonal events beneath the towers.",
-    image: aerial.bridgeOverWater,
+    image: photos.bridgeOverWater,
     alt: "Aerial view of a bridge crossing the Willamette River in North Portland",
   },
   {
     name: "Lombard & everyday Portland",
     blurb:
       "Coffee, casual eats, and daily errands along the neighborhood’s main corridor.",
-    image:
-      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80",
+    image: photos.portlandCafeLatte,
     alt: "Latte art in a ceramic cup on a café table",
   },
 ];
@@ -136,7 +119,7 @@ export const transportation = {
       icon: "walk" as const,
     },
   ],
-  image: aerial.portlandHills,
+  image: photos.portlandHills,
   alt: "Aerial view of Portland hillside neighborhoods, trees, and city streets",
 } as const;
 
@@ -148,52 +131,52 @@ export type GalleryImage = {
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: aerial.portlandBridgeHood,
+    src: photos.portlandBridgeHood,
     alt: "Aerial view of Portland bridges, downtown, and Mount Hood",
     span: "wide",
   },
   {
-    src: aerial.stJohnsBridge,
+    src: photos.stJohnsBridge,
     alt: "Aerial view of the St. Johns Bridge and the Willamette River",
     span: "tall",
   },
   {
-    src: aerial.portlandSkyline,
+    src: photos.portlandSkyline,
     alt: "Aerial view of the Portland skyline with Mount Hood in the distance",
     span: "wide",
   },
   {
-    src: aerial.riverAndBridges,
+    src: photos.riverAndBridges,
     alt: "Aerial drone view of the Willamette River and Portland bridges",
     span: "normal",
   },
   {
-    src: aerial.portlandWaterfront,
+    src: photos.portlandWaterfront,
     alt: "Aerial view of Portland buildings along the Willamette waterfront",
     span: "normal",
   },
   {
-    src: aerial.willametteRiver,
+    src: photos.willametteRiver,
     alt: "Aerial view of the Willamette River and surrounding green landscape",
     span: "normal",
   },
   {
-    src: aerial.bridgeOverWater,
+    src: photos.bridgeOverWater,
     alt: "Aerial view of a bridge spanning the Willamette River",
     span: "tall",
   },
   {
-    src: aerial.nightSkylineBridge,
+    src: photos.nightSkylineBridge,
     alt: "Aerial view of Portland’s skyline and bridges at night",
     span: "normal",
   },
 ];
 
 export const neighborhoodLabels = [
-  { label: "The Bluff", image: aerial.riverAndBridges },
-  { label: "University Park", image: wikimedia.universityParkNeighborhood },
-  { label: "St. Johns", image: aerial.stJohnsBridge },
-  { label: "Portland & the Willamette", image: aerial.willametteRiver },
+  { label: "The Bluff", image: photos.riverAndBridges },
+  { label: "University Park", image: photos.universityParkNeighborhood },
+  { label: "St. Johns", image: photos.stJohnsBridge },
+  { label: "Portland & the Willamette", image: photos.willametteRiver },
 ] as const;
 
 export const about = {

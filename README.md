@@ -4,6 +4,8 @@ A minimal, image-forward marketing site for Cascade Crest LLC—a Washington Sta
 
 Built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**, optimized for deployment on [Vercel](https://vercel.com).
 
+**Live site:** [https://www.cascadecrestllc.com](https://www.cascadecrestllc.com) (apex redirects to `www`).
+
 ## Local development (Windows)
 
 Recommended path: **`D:\Gitlocal\cascadecrestllc`**
@@ -50,15 +52,23 @@ npm run build
 npm run start
 ```
 
+Open [http://localhost:3000](http://localhost:3000). Google Analytics does **not** load from a local production build—only on the Vercel production deploy.
+
 ## Editing content
 
-All copy and image URLs live in [`lib/content.ts`](lib/content.ts). Update text, Unsplash URLs, or swap in your own images under `public/images/` and point `src` to local paths.
+All copy and image paths live in [`lib/content.ts`](lib/content.ts). Images are self-hosted under `public/images/photos/` as WebP files.
+
+**To change a photo:**
+
+1. Add or update the source URL in [`scripts/image-manifest.mjs`](scripts/image-manifest.mjs).
+2. Run `npm run optimize-images` (downloads, resizes, and writes WebP + `app/opengraph-image.webp`).
+3. Point the matching entry in `lib/content.ts` at `/images/photos/{slug}.webp`.
 
 **Privacy:** Do not add the property street address anywhere in content or metadata.
 
 ## Photography
 
-Launch images are sourced from [Unsplash](https://unsplash.com), [Wikimedia Commons](https://commons.wikimedia.org/), and [npGREENWAY](https://npgreenway.org/) where noted. See `footer.photoCredits` in `lib/content.ts`.
+Photos were sourced from [Unsplash](https://unsplash.com), [Wikimedia Commons](https://commons.wikimedia.org/), and [npGREENWAY](https://npgreenway.org/) where noted. Attribution remains in `footer.photoCredits` in [`lib/content.ts`](lib/content.ts).
 
 ## Bot and AI crawler protection
 
@@ -68,7 +78,7 @@ Two layers work together:
 
 - **`/robots.txt`** — asks known AI crawlers (GPTBot, ClaudeBot, etc.) not to crawl; still allows normal search bots.
 - **Page metadata** — `noai, noimageai` hints where supported.
-- **Security headers** — applied on every page via `proxy.ts` and `lib/security-headers.ts`.
+- **Security headers** — applied via `headers()` in [`next.config.ts`](next.config.ts) and [`lib/security-headers.ts`](lib/security-headers.ts).
 
 This is polite blocking only; bad actors can ignore `robots.txt`.
 
@@ -77,23 +87,19 @@ This is polite blocking only; bad actors can ignore `robots.txt`.
 On **Pro**, use the project **Firewall**:
 
 1. **Firewall → Managed Rulesets → AI bots** → mode **Deny** (blocks AI training/scraping crawlers Vercel maintains).
-2. **Firewall → Managed Rulesets → Bot protection** → mode **Challenge** (optional; slows scripted scrapers; keeps Googlebot etc. on the allow list).
+2. **Firewall → Managed Rulesets → Bot protection** — for a public marketing site, prefer **Log** or targeted rules over site-wide **Challenge**. Challenge can return Vercel Security Checkpoint pages to automated tools (Lighthouse, uptime monitors, some crawlers) and inflate perceived errors.
+3. Confirm Googlebot and Bingbot are not challenged (Vercel managed allow lists).
+4. After changing rules, verify with PageSpeed Insights and `curl -I https://www.cascadecrestllc.com` (expect normal HTML caching headers for static pages, not checkpoint responses).
 
 Docs: [Bot management](https://vercel.com/docs/bot-management), [Block GPTBot](https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot).
 
-Optional env var: `NEXT_PUBLIC_SITE_URL` = `https://www.cascadecrestllc.com` (used for sitemap/robots URLs; defaults to that if unset).
+Optional env var: `NEXT_PUBLIC_SITE_URL` = `https://www.cascadecrestllc.com` (used for sitemap/robots/metadata; defaults to that if unset).
 
-### 3. BotID (`botid` package)
-
-[Vercel BotID](https://vercel.com/docs/botid) protects **specific routes** (APIs, forms, server actions)—not the whole static site. The package is installed and configured via `withBotId()` in `next.config.ts` and `instrumentation-client.ts`.
-
-When you add a sensitive endpoint, list it in `lib/botid-protected-routes.ts` and call `checkBotId()` from `botid/server` in that route handler.
-
-In Vercel: **Firewall → Rules → enable BotID Deep Analysis** (optional, paid tier for stronger checks).
+**BotID:** Not installed. When you add a contact form or API, follow [Vercel BotID](https://vercel.com/docs/botid) and protect only those routes.
 
 ## Google Analytics (GA4)
 
-GA4 loads **only on Vercel production** (`www.cascadecrestllc.com`). Local dev and preview deploys do not send analytics.
+GA4 loads **only on Vercel production** (`www.cascadecrestllc.com`). Local dev and preview deploys do not send analytics. Scripts use `afterInteractive` so they do not block first paint.
 
 1. In [Google Analytics](https://analytics.google.com), create a **GA4** property for `cascadecrestllc.com`.
 2. **Admin → Data streams → Web** → copy the **Measurement ID** (`G-XXXXXXXXXX`).
@@ -104,22 +110,34 @@ GA4 loads **only on Vercel production** (`www.cascadecrestllc.com`). Local dev a
 4. Redeploy production (or push to `main`).
 5. In GA4, open **Reports → Realtime** to confirm hits (may take a few minutes).
 
+The measurement ID is also hardcoded as a fallback in [`lib/analytics.ts`](lib/analytics.ts); the Vercel env var overrides it when set.
+
 ## Deploy to Vercel
+
+This project is already connected to Vercel and deploys from `main` on push to GitHub.
+
+**First-time setup (new fork or clone):**
 
 1. Push this repository to GitHub.
 2. In the Vercel dashboard, **Add New Project** and import the repo.
 3. Framework preset: **Next.js** (defaults are fine).
-4. Deploy. Add `NEXT_PUBLIC_GA_MEASUREMENT_ID` in **Settings → Environment Variables** if using Google Analytics.
+4. Deploy. Add `NEXT_PUBLIC_GA_MEASUREMENT_ID` in **Settings → Environment Variables** (Production only) if using Google Analytics.
 5. Add a custom domain via **Add New → Domain** or the team **Domains** page.
+
+**Ongoing:** push to `main` → Vercel builds production automatically.
 
 ## Project structure
 
-- `app/` — layout, page, global styles
-- `components/` — Hero, Neighborhood, Transportation, Gallery, About, Footer, GoogleAnalytics
-- `lib/content.ts` — centralized copy and image URLs
+- `app/` — layout, home page, global styles, `opengraph-image.webp`, `robots.ts`, `sitemap.ts`
+- `components/` — Hero, Neighborhood, Transportation, ImageGallery, About, SiteFooter, GoogleAnalytics
+- `lib/content.ts` — centralized copy and image paths
+- `lib/analytics.ts` — GA4 measurement ID and production-only gate
+- `lib/security-headers.ts` — CSP and security headers
 - `lib/ai-crawler-user-agents.ts` — AI bot list for `robots.txt`
-- `app/robots.ts`, `app/sitemap.ts` — crawler policy and sitemap
-- `public/` — static assets (favicon, local images)
+- `scripts/optimize-images.mjs` — download and optimize photos into `public/images/photos/`
+- `scripts/image-manifest.mjs` — source URLs for the optimizer script
+- `next.config.ts` — image formats, security `headers()`
+- `public/images/photos/` — self-hosted WebP assets
 
 ## License
 

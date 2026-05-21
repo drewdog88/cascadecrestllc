@@ -1,21 +1,18 @@
 import type { NextConfig } from "next";
-import { withBotId } from "botid/next/config";
+import { securityHeaderEntries } from "./lib/security-headers";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
+    formats: ["image/avif", "image/webp"],
+  },
+  async headers() {
+    return [
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        pathname: "/**",
+        source: "/:path*",
+        headers: [...securityHeaderEntries],
       },
-      {
-        protocol: "https",
-        hostname: "upload.wikimedia.org",
-        pathname: "/wikipedia/commons/**",
-      },
-    ],
+    ];
   },
 };
 
-export default withBotId(nextConfig);
+export default nextConfig;

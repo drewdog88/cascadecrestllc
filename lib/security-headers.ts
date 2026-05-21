@@ -1,12 +1,10 @@
-import type { NextResponse } from "next/server";
-
 const contentSecurityPolicy = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' https://images.unsplash.com https://upload.wikimedia.org https://www.google-analytics.com https://www.googletagmanager.com data: blob:",
+  "img-src 'self' https://www.google-analytics.com https://www.googletagmanager.com data: blob:",
   "font-src 'self'",
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://www.googletagmanager.com https://api.vercel.com",
+  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://www.googletagmanager.com",
   "frame-ancestors 'none'",
   "object-src 'none'",
   "base-uri 'self'",
@@ -26,11 +24,4 @@ export const securityHeaderEntries = [
     key: "Strict-Transport-Security",
     value: "max-age=63072000; includeSubDomains; preload",
   },
-] as const;
-
-export function applySecurityHeaders(response: NextResponse): NextResponse {
-  for (const { key, value } of securityHeaderEntries) {
-    response.headers.set(key, value);
-  }
-  return response;
-}
+];

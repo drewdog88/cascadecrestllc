@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { nearbyPlaces, neighborhoodLabels, proximity } from "@/lib/content";
-import { ScrollReveal } from "./ScrollReveal";
 
 export function Neighborhood() {
   return (
@@ -10,26 +9,27 @@ export function Neighborhood() {
       aria-labelledby="neighborhood-heading"
     >
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
-        <ScrollReveal>
-          <header className="max-w-2xl">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-teal">
-              The neighborhood
-            </p>
-            <h2
-              id="neighborhood-heading"
-              className="mt-4 font-serif text-3xl font-light text-purple sm:text-5xl"
-            >
-              {proximity.headline}
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-purple-medium">
-              {proximity.subhead}
-            </p>
-          </header>
-        </ScrollReveal>
+        <header className="reveal max-w-2xl">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-teal">
+            The neighborhood
+          </p>
+          <h2
+            id="neighborhood-heading"
+            className="mt-4 font-serif text-3xl font-light text-purple sm:text-5xl"
+          >
+            {proximity.headline}
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-purple-medium">
+            {proximity.subhead}
+          </p>
+        </header>
 
         <div className="mt-16 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {neighborhoodLabels.map((item) => (
-            <ScrollReveal key={item.label} className="group relative aspect-[4/5] overflow-hidden rounded-sm">
+            <div
+              key={item.label}
+              className="reveal group relative aspect-[4/5] overflow-hidden rounded-sm"
+            >
               <Image
                 src={item.image}
                 alt=""
@@ -41,7 +41,7 @@ export function Neighborhood() {
               <p className="absolute inset-x-0 bottom-0 p-4 font-serif text-lg text-white sm:text-xl">
                 {item.label}
               </p>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
 
@@ -49,7 +49,7 @@ export function Neighborhood() {
           {nearbyPlaces.map((place, index) => {
             const reversed = index % 2 === 1;
             return (
-              <ScrollReveal key={place.name} as="li">
+              <li key={place.name} className="reveal">
                 <article
                   className={`grid items-center gap-8 md:grid-cols-2 md:gap-14 ${
                     reversed ? "md:[&>*:first-child]:order-2" : ""
@@ -88,7 +88,7 @@ export function Neighborhood() {
                     ) : null}
                   </div>
                 </article>
-              </ScrollReveal>
+              </li>
             );
           })}
         </ul>

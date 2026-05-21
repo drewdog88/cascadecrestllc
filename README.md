@@ -2,9 +2,19 @@
 
 A minimal, image-forward marketing site for Cascade Crest LLC—a Washington State rental company with a property in Portland’s University Park neighborhood (near the University of Portland bluff).
 
-Built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**, optimized for deployment on [Vercel](https://vercel.com).
+Built with **Next.js 16**, **React**, **TypeScript**, and **Tailwind CSS**. Deployed on [Vercel](https://vercel.com) as a **fully static** app: no API routes, no edge middleware, and photos served from the deployment CDN (not Vercel Blob).
 
 **Live site:** [https://www.cascadecrestllc.com](https://www.cascadecrestllc.com) (apex redirects to `www`).
+
+## Scripts
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Local development server |
+| `npm run build` | Production build (static pages) |
+| `npm run start` | Serve production build locally |
+| `npm run lint` | ESLint |
+| `npm run optimize-images` | Re-download sources, regenerate WebP assets and OG image (see below) |
 
 ## Local development (Windows)
 
@@ -52,19 +62,42 @@ npm run build
 npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000). Google Analytics does **not** load from a local production build—only on the Vercel production deploy.
+Open [http://localhost:3000](http://localhost:3000).
+
+Expected build output: static routes only (`○ /`, `○ /robots.txt`, `○ /sitemap.xml`) with **no** proxy/middleware line.
+
+Google Analytics does **not** load from a local production build—only on the Vercel production deploy (`VERCEL_ENV=production`).
+
+## Environment variables
+
+| Variable | Where | Purpose |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Vercel (optional) | Canonical base URL for sitemap, robots, and Open Graph. Defaults to `https://www.cascadecrestllc.com`. |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Vercel **Production** only | GA4 measurement ID (`G-…`). Overrides fallback in [`lib/analytics.ts`](lib/analytics.ts). |
 
 ## Editing content
 
-All copy and image paths live in [`lib/content.ts`](lib/content.ts). Images are self-hosted under `public/images/photos/` as WebP files.
+All copy and image paths live in [`lib/content.ts`](lib/content.ts).
 
-**To change a photo:**
+**Text:** edit strings in `lib/content.ts` and redeploy.
 
-1. Add or update the source URL in [`scripts/image-manifest.mjs`](scripts/image-manifest.mjs).
-2. Run `npm run optimize-images` (downloads, resizes, and writes WebP + `app/opengraph-image.webp`).
-3. Point the matching entry in `lib/content.ts` at `/images/photos/{slug}.webp`.
+**Photos:** images are committed as WebP under `public/images/photos/`. New clones do **not** need to run `optimize-images` unless you are replacing assets.
+
+To swap or add a photo:
+
+1. Add or update the source URL in [`scripts/image-manifest.mjs`](scripts/image-manifest.mjs) (remote URLs) or point `localImages` at a file under `public/images/`.
+2. Run `npm run optimize-images` (requires network; uses `sharp` as a dev dependency).
+3. Wire the slug in `lib/content.ts` as `/images/photos/{slug}.webp`.
+4. Update `SITE_LAST_MODIFIED` in [`app/sitemap.ts`](app/sitemap.ts) if the change is material for crawlers.
+5. Commit the new WebP files and `app/opengraph-image.webp` (regenerated from the hero).
 
 **Privacy:** Do not add the property street address anywhere in content or metadata.
+
+## Images and Vercel
+
+Photos are stored in **`public/images/photos/`**, not [Vercel Blob](https://vercel.com/docs/storage/vercel-blob). For a small, rarely changing marketing site this is the recommended approach: assets ship with the build, are cached on Vercel’s CDN, and avoid extra storage APIs or remote `next/image` hosts.
+
+[`next/image`](https://nextjs.org/docs/app/api-reference/components/image) still generates responsive AVIF/WebP `srcset` from those local files. Open Graph uses the file convention [`app/opengraph-image.webp`](app/opengraph-image.webp).
 
 ## Photography
 
@@ -78,7 +111,7 @@ Two layers work together:
 
 - **`/robots.txt`** — asks known AI crawlers (GPTBot, ClaudeBot, etc.) not to crawl; still allows normal search bots.
 - **Page metadata** — `noai, noimageai` hints where supported.
-- **Security headers** — applied via `headers()` in [`next.config.ts`](next.config.ts) and [`lib/security-headers.ts`](lib/security-headers.ts).
+- **Security headers** — CSP, HSTS, and related headers via `headers()` in [`next.config.ts`](next.config.ts) ([`lib/security-headers.ts`](lib/security-headers.ts)).
 
 This is polite blocking only; bad actors can ignore `robots.txt`.
 
@@ -89,11 +122,9 @@ On **Pro**, use the project **Firewall**:
 1. **Firewall → Managed Rulesets → AI bots** → mode **Deny** (blocks AI training/scraping crawlers Vercel maintains).
 2. **Firewall → Managed Rulesets → Bot protection** — for a public marketing site, prefer **Log** or targeted rules over site-wide **Challenge**. Challenge can return Vercel Security Checkpoint pages to automated tools (Lighthouse, uptime monitors, some crawlers) and inflate perceived errors.
 3. Confirm Googlebot and Bingbot are not challenged (Vercel managed allow lists).
-4. After changing rules, verify with PageSpeed Insights and `curl -I https://www.cascadecrestllc.com` (expect normal HTML caching headers for static pages, not checkpoint responses).
+4. After changing rules, verify with PageSpeed Insights and `curl -I https://www.cascadecrestllc.com` (expect normal HTML for static pages, not checkpoint responses).
 
 Docs: [Bot management](https://vercel.com/docs/bot-management), [Block GPTBot](https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot).
-
-Optional env var: `NEXT_PUBLIC_SITE_URL` = `https://www.cascadecrestllc.com` (used for sitemap/robots/metadata; defaults to that if unset).
 
 **BotID:** Not installed. When you add a contact form or API, follow [Vercel BotID](https://vercel.com/docs/botid) and protect only those routes.
 
@@ -110,34 +141,40 @@ GA4 loads **only on Vercel production** (`www.cascadecrestllc.com`). Local dev a
 4. Redeploy production (or push to `main`).
 5. In GA4, open **Reports → Realtime** to confirm hits (may take a few minutes).
 
-The measurement ID is also hardcoded as a fallback in [`lib/analytics.ts`](lib/analytics.ts); the Vercel env var overrides it when set.
-
 ## Deploy to Vercel
 
-This project is already connected to Vercel and deploys from `main` on push to GitHub.
+This project is connected to Vercel and deploys from `main` on push to GitHub.
 
 **First-time setup (new fork or clone):**
 
 1. Push this repository to GitHub.
 2. In the Vercel dashboard, **Add New Project** and import the repo.
 3. Framework preset: **Next.js** (defaults are fine).
-4. Deploy. Add `NEXT_PUBLIC_GA_MEASUREMENT_ID` in **Settings → Environment Variables** (Production only) if using Google Analytics.
+4. Deploy. Set environment variables above if needed.
 5. Add a custom domain via **Add New → Domain** or the team **Domains** page.
 
 **Ongoing:** push to `main` → Vercel builds production automatically.
 
 ## Project structure
 
-- `app/` — layout, home page, global styles, `opengraph-image.webp`, `robots.ts`, `sitemap.ts`
-- `components/` — Hero, Neighborhood, Transportation, ImageGallery, About, SiteFooter, GoogleAnalytics
-- `lib/content.ts` — centralized copy and image paths
-- `lib/analytics.ts` — GA4 measurement ID and production-only gate
-- `lib/security-headers.ts` — CSP and security headers
-- `lib/ai-crawler-user-agents.ts` — AI bot list for `robots.txt`
-- `scripts/optimize-images.mjs` — download and optimize photos into `public/images/photos/`
-- `scripts/image-manifest.mjs` — source URLs for the optimizer script
-- `next.config.ts` — image formats, security `headers()`
-- `public/images/photos/` — self-hosted WebP assets
+```
+app/                    Layout, home page, globals.css, metadata routes
+  opengraph-image.webp  Social preview image (regenerated by optimize-images)
+  robots.ts             robots.txt
+  sitemap.ts            sitemap.xml
+components/             Hero, Neighborhood, Transportation, ImageGallery, About, SiteFooter, GoogleAnalytics
+lib/
+  content.ts            Copy and image paths
+  analytics.ts          GA4 ID and production-only gate
+  security-headers.ts   CSP and security header values
+  ai-crawler-user-agents.ts
+public/images/photos/   Self-hosted WebP assets (committed)
+scripts/
+  image-manifest.mjs    Source URLs for optimize-images
+  optimize-images.mjs   Download, resize, write WebP + OG image
+  setup-gitlocal.ps1    Windows Gitlocal setup helper
+next.config.ts          Image formats (AVIF/WebP), security headers()
+```
 
 ## License
 

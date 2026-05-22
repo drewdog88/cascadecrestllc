@@ -11,8 +11,7 @@ export const screeningConfig = {
     process.env.SCREENING_FEE_DISCLOSURE ??
     "$39.99–$49.99 (package selected at screening; applicant pays)",
   inviteUrl:
-    process.env.SCREENING_INVITE_URL ??
-    "https://www.rentspree.com/",
+    process.env.SCREENING_INVITE_URL ?? "https://apply.link/K6AP5pA",
   setupNote:
-    "Create a free RentSpree landlord account, configure applicant-paid screening for Oregon, then set SCREENING_INVITE_URL to your listing or invite URL.",
+    "RentSpree applicant link (apply.link). Override with SCREENING_INVITE_URL in Vercel if you rotate invites.",
 } as const;

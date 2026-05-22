@@ -26,13 +26,6 @@ export function LegalPage({
         >
           ← Home
         </Link>
-        {" · "}
-        <Link
-          href="/apply"
-          className="text-sm text-teal underline-offset-2 hover:underline"
-        >
-          Apply
-        </Link>
       </p>
       <h1 className="font-serif text-4xl font-light text-purple">{title}</h1>
       {intro ? (

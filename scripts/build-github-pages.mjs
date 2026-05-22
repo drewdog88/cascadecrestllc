@@ -3,7 +3,7 @@
  * Usage: npm run build:github-pages
  */
 import { spawn } from "node:child_process";
-import { cp, mkdir, rename, rm, stat } from "node:fs/promises";
+import { cp, mkdir, rename, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -94,7 +94,9 @@ try {
   stashed = true;
   console.log("Running next build (STATIC_EXPORT=true)…");
   await runNextBuild();
-  console.log(`Done. Static site is in ${path.join(root, "out")}`);
+  const outDir = path.join(root, "out");
+  await writeFile(path.join(outDir, ".nojekyll"), "");
+  console.log(`Done. Static site is in ${outDir}`);
 } catch (err) {
   console.error(err);
   process.exitCode = 1;

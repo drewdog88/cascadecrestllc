@@ -13,9 +13,10 @@ Cascade Crest publishes **Oregon disclosures and screening criteria** on this si
 
 | Variable | Purpose |
 | --- | --- |
-| `SCREENING_INVITE_URL` | RentSpree invite URL (default in code: `https://apply.link/K6AP5pA`) |
+| `NEXT_PUBLIC_SCREENING_INVITE_URL` | Applicant invite on `/apply` (default: `https://apply.link/K6AP5pA`) |
+| `SCREENING_INVITE_URL` | Server-side fallback (same URL) |
 | `SCREENING_FEE_DISCLOSURE` | Fee text on `/apply` (ORS 90.295) |
-| `ADMIN_SECRET` | Optional: protect `/admin/applications` (portal links only) |
+| `ADMIN_SECRET` | Password for `/admin/login` (min 16 characters) |
 
 ## 3. Where data lives
 

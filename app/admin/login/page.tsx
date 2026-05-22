@@ -1,13 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
+const DEFAULT_ADMIN_DEST = "/admin/applications";
+
+function safeAdminRedirect(path: string | null): string {
+  if (!path || !path.startsWith("/admin") || path.startsWith("/admin/login")) {
+    return DEFAULT_ADMIN_DEST;
+  }
+  return path;
+}
+
 export default function AdminLoginPage() {
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const from = searchParams.get("from") ?? "/admin/applications";
+  const from = safeAdminRedirect(searchParams.get("from"));
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -27,8 +35,8 @@ export default function AdminLoginPage() {
         setError(data.error ?? "Login failed.");
         return;
       }
-      router.push(from);
-      router.refresh();
+      // Full navigation so the new session cookie is sent on the next request
+      window.location.assign(from);
     } catch {
       setError("Network error.");
     } finally {

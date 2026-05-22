@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { AI_CRAWLER_USER_AGENTS } from "@/lib/ai-crawler-user-agents";
 
+export const dynamic = "force-static";
+
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.cascadecrestllc.com";
 

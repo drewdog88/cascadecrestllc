@@ -1,3 +1,5 @@
+import { assetPath } from "./asset-path";
+
 export const site = {
   name: "Cascade Crest",
   legalName: "Cascade Crest LLC",
@@ -7,8 +9,8 @@ export const site = {
 
 export const brand = {
   logoAlt: `${site.legalName} — ${site.tagline}`,
-  wordmark: "/images/logo/cascade-crest-wordmark.png",
-  icon: "/images/logo/cascade-crest-icon.png",
+  wordmark: assetPath("/images/logo/cascade-crest-wordmark.png"),
+  icon: assetPath("/images/logo/cascade-crest-icon.png"),
 } as const;
 
 export const apply = {
@@ -21,19 +23,21 @@ export const apply = {
 } as const;
 
 const photos = {
-  stJohnsBridge: "/images/photos/st-johns-bridge.webp",
-  portlandBridgeHood: "/images/photos/portland-bridge-hood.webp",
-  portlandSkyline: "/images/photos/portland-skyline.webp",
-  portlandWaterfront: "/images/photos/portland-waterfront.webp",
-  riverAndBridges: "/images/photos/river-and-bridges.webp",
-  willametteRiver: "/images/photos/willamette-river.webp",
-  bridgeOverWater: "/images/photos/bridge-over-water.webp",
-  portlandHills: "/images/photos/portland-hills.webp",
-  nightSkylineBridge: "/images/photos/night-skyline-bridge.webp",
-  portlandCafeLatte: "/images/photos/portland-cafe-latte.webp",
-  universityOfPortland: "/images/photos/university-of-portland.webp",
-  universityParkNeighborhood: "/images/photos/university-park-neighborhood.webp",
-  waudBluffTrail: "/images/photos/waud-bluff-trail.webp",
+  stJohnsBridge: assetPath("/images/photos/st-johns-bridge.webp"),
+  portlandBridgeHood: assetPath("/images/photos/portland-bridge-hood.webp"),
+  portlandSkyline: assetPath("/images/photos/portland-skyline.webp"),
+  portlandWaterfront: assetPath("/images/photos/portland-waterfront.webp"),
+  riverAndBridges: assetPath("/images/photos/river-and-bridges.webp"),
+  willametteRiver: assetPath("/images/photos/willamette-river.webp"),
+  bridgeOverWater: assetPath("/images/photos/bridge-over-water.webp"),
+  portlandHills: assetPath("/images/photos/portland-hills.webp"),
+  nightSkylineBridge: assetPath("/images/photos/night-skyline-bridge.webp"),
+  portlandCafeLatte: assetPath("/images/photos/portland-cafe-latte.webp"),
+  universityOfPortland: assetPath("/images/photos/university-of-portland.webp"),
+  universityParkNeighborhood: assetPath(
+    "/images/photos/university-park-neighborhood.webp",
+  ),
+  waudBluffTrail: assetPath("/images/photos/waud-bluff-trail.webp"),
 } as const;
 
 export const hero = {

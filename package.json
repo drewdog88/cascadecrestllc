@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:github-pages": "node scripts/build-github-pages.mjs",
     "start": "next start",
     "lint": "eslint",
     "optimize-images": "node scripts/optimize-images.mjs",
@@ -19,6 +20,9 @@
   "optionalDependencies": {
     "@next/swc-linux-x64-gnu": "16.2.6",
     "@next/swc-win32-x64-msvc": "16.2.6"
+  },
+  "overrides": {
+    "postcss": "8.5.10"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

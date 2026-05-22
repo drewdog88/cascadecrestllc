@@ -12,6 +12,7 @@ Built with **Next.js 16**, **React**, **TypeScript**, and **Tailwind CSS**. Depl
 | --- | --- |
 | `npm run dev` | Local development server |
 | `npm run build` | Production build (static pages) |
+| `npm run build:github-pages` | Static export for GitHub Pages preview (no admin) |
 | `npm run start` | Serve production build locally |
 | `npm run lint` | ESLint |
 | `npm run optimize-images` | Re-download sources, regenerate WebP assets and OG image (see below) |
@@ -161,6 +162,46 @@ This project is connected to Vercel and deploys from `main` on push to GitHub.
 
 **Ongoing:** push to `main` → Vercel builds production automatically.
 
+## GitHub Pages preview
+
+A **public-only** static mirror deploys to GitHub Pages when you push the **`github-pages`** branch (or run the workflow manually). Production on Vercel still deploys from **`main`**; the preview does not use your custom domain.
+
+**Workflow:** merge or cherry-pick preview work into `github-pages` when you want to update the mirror—keep `main` for Vercel-only production unless you intentionally merge Pages changes there too.
+
+**Preview URL:** [https://drewdog88.github.io/cascadecrestllc/](https://drewdog88.github.io/cascadecrestllc/)
+
+**Not on preview:** `/admin`, `/api/admin/login`, and middleware (stashed during [`scripts/build-github-pages.mjs`](scripts/build-github-pages.mjs)). GA4, Vercel security headers, and Firewall rules apply only to production.
+
+### One-time GitHub setup
+
+1. **Settings → Pages → Build and deployment → Source:** **GitHub Actions**.
+2. **Settings → Secrets and variables → Actions:**
+   - Secret `NEXT_PUBLIC_SCREENING_INVITE_URL` — same RentSpree invite URL as Vercel (so `/apply` works on preview).
+   - Optional variable `SCREENING_FEE_DISCLOSURE` — fee text for `/apply` if you use it in production.
+
+Do not add `ADMIN_SECRET` for Pages builds.
+
+### Publish preview updates
+
+```bash
+git checkout github-pages
+# merge or commit your changes, then:
+git push -u origin github-pages
+```
+
+Or open a PR into `github-pages` from a feature branch. Pushing `main` alone does **not** update the GitHub Pages preview.
+
+### Local static preview
+
+```bash
+npm run build:github-pages
+npx serve out
+```
+
+Open [http://localhost:3000/cascadecrestllc/](http://localhost:3000/cascadecrestllc/) (or the URL `serve` prints). Paths are prefixed with `/cascadecrestllc` because GitHub project Pages hosts the site under the repo name.
+
+If a build fails mid-run and admin routes are missing, delete `.gh-pages-stash/` and run `git checkout -- app/admin app/api middleware.ts`.
+
 ## Project structure
 
 ```
@@ -188,7 +229,10 @@ docs/SCREENING_SETUP.md RentSpree / SmartMove setup
 middleware.ts           Protects /admin/* routes
 docs/OREGON_COMPLIANCE.md
 public/images/photos/   Self-hosted WebP assets (committed)
+.github/workflows/
+  deploy-github-pages.yml  Static export → GitHub Pages preview
 scripts/
+  build-github-pages.mjs   Stash admin/api, static export, restore
   image-manifest.mjs    Source URLs for optimize-images
   optimize-images.mjs   Download, resize, write WebP + OG image
   setup-gitlocal.ps1    Windows Gitlocal setup helper
@@ -196,7 +240,7 @@ scripts/
   extract-logo.mjs      Crop logos from Gemini brand sheet
 public/images/logo/     Transparent PNG/WebP wordmark and icon
 design/                 Source logo assets (optional)
-next.config.ts          Image formats (AVIF/WebP), security headers()
+next.config.ts          Image formats (AVIF/WebP), security headers(); STATIC_EXPORT for Pages
 ```
 
 ## License

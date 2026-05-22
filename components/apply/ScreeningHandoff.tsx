@@ -9,7 +9,11 @@ import {
 } from "@/lib/legal-content";
 import { screeningConfig } from "@/lib/screening";
 
-export function ScreeningHandoff() {
+type ScreeningHandoffProps = {
+  inviteUrl: string;
+};
+
+export function ScreeningHandoff({ inviteUrl }: ScreeningHandoffProps) {
   const [consents, setConsents] = useState({
     consentCriteriaRead: false,
     consentScreeningFee: false,
@@ -25,8 +29,7 @@ export function ScreeningHandoff() {
 
   function continueToScreening() {
     if (!ready) return;
-    const url = screeningConfig.inviteUrl;
-    window.location.assign(url);
+    window.location.assign(inviteUrl);
   }
 
   return (

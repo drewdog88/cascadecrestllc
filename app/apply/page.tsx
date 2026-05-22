@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { ScreeningHandoff } from "@/components/apply/ScreeningHandoff";
 import { site } from "@/lib/content";
+import { getScreeningInviteUrl } from "@/lib/screening";
 
 export default function ApplyPage() {
+  const inviteUrl = getScreeningInviteUrl();
+
   return (
     <main className="min-h-screen bg-cream">
       <header className="border-b border-purple-light/40 bg-purple px-6 py-10 text-white sm:px-10">
@@ -21,7 +24,7 @@ export default function ApplyPage() {
         </div>
       </header>
       <div className="mx-auto max-w-2xl px-6 py-12 sm:px-10">
-        <ScreeningHandoff />
+        <ScreeningHandoff inviteUrl={inviteUrl} />
       </div>
     </main>
   );

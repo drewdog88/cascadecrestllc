@@ -35,12 +35,12 @@ export default async function AdminApplicationsPage() {
           </p>
           <p>
             <a
-              href={screeningConfig.inviteUrl}
+              href={screeningConfig.landlordDashboardUrl}
               className="inline-block rounded-md bg-purple px-5 py-2.5 font-medium text-white"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Open {screeningConfig.providerLabel} dashboard
+              Open {screeningConfig.providerLabel} landlord dashboard
             </a>
           </p>
           <p>{screeningConfig.setupNote}</p>

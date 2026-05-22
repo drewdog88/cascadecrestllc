@@ -1,7 +1,7 @@
 export const site = {
   name: "Cascade Crest",
   legalName: "Cascade Crest LLC",
-  tagline: "Washington-based rental stewardship · Oregon homes",
+  tagline: "Stewarding homes on the Portland bluff",
   heroSubline: "University Park · The Bluff · Steps from campus",
 } as const;
 

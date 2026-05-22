@@ -75,50 +75,129 @@ export const orsDisclosures = {
     "Screening fees are charged to the applicant at our screening partner’s published rate for the package selected (typically $39.99–$49.99 plus optional add-ons). Fees must not exceed average actual or customary cost for comparable screening. One screening fee per 60-day period applies across our properties. The screening partner provides a receipt; we confirm screening was ordered as required by ORS 90.295.",
 } as const;
 
-/** Landlord operational checklist (not legal advice). */
+/** Oregon & Portland rental property compliance checklist. */
 export const complianceChecklist = {
-  title: "Oregon / Portland compliance checklist",
-  intro:
-    "Use this with written screening criteria and FCRA-compliant screening only (e.g. RentSpree / TransUnion)—not general public-records sites.",
-  items: [
+  title: "Oregon & Portland Rental Compliance Checklist",
+  sections: [
     {
-      heading: "Written screening criteria",
-      required: true,
-      body: "Publish criteria before any screening fee. Link: /screening-criteria. Version shown on /apply before handoff to RentSpree.",
+      heading: "1. Safety & Health Standards (Habitability)",
+      items: [
+        {
+          label: "Smoke Detectors",
+          detail:
+            "Working, 10-year, tamper-resistant batteries, installed in every bedroom and on every level.",
+        },
+        {
+          label: "Carbon Monoxide Alarms",
+          detail:
+            "Installed in every bedroom or within 15 feet of bedroom doors.",
+        },
+        {
+          label: "Heat",
+          detail:
+            "All rooms must have a functioning, safe heat source (no portable heaters allowed for compliance).",
+        },
+        {
+          label: "Plumbing",
+          detail:
+            "All fixtures (sinks, toilets, tubs) must have hot/cold running water, drain freely, and be leak-free.",
+        },
+        {
+          label: "Electrical",
+          detail:
+            "Outlets and switches must have intact covers; no exposed wiring; GFCIs required in kitchens and bathrooms.",
+        },
+        {
+          label: "Ventilation",
+          detail:
+            "Bathrooms must have a window that opens or a mechanical fan.",
+        },
+        {
+          label: "Pest Control",
+          detail: "Property must be free of infestations.",
+        },
+        {
+          label: "Structural",
+          detail:
+            "No peeling paint (lead hazard risk), stable railings on stairs/decks, and weather-tight windows/doors.",
+        },
+      ],
     },
     {
-      heading: "Uniform standards",
-      required: true,
-      body: "Apply the same criteria to every applicant for the same vacancy.",
+      heading: "2. Portland-Specific Requirements",
+      items: [
+        {
+          label: "Relocation Assistance",
+          detail:
+            "Ensure awareness of the Mandatory Relocation Assistance policy for qualifying no-cause terminations or rent increases above specific thresholds.",
+        },
+        {
+          label: "Application & Screening",
+          detail:
+            "Adhere to the City of Portland’s strict screening criteria (must provide written notice of criteria before taking an application fee).",
+        },
+        {
+          label: "Security Deposits",
+          detail:
+            "Utilize the Portland Security Deposit Addendum and Notice of Security Deposit Rights. Ensure the deposit is held in a compliant manner.",
+        },
+        {
+          label: "Unit Inventory",
+          detail:
+            "Provide a Portland Unit Inventory form to document the condition of the property at move-in.",
+        },
+      ],
     },
     {
-      heading: "Fair Chance / criminal history",
-      required: true,
-      body: "Individualized assessment; no automatic denial on record alone. Application includes mandatory Fair Chance disclosure acknowledgment.",
+      heading: "3. Documentation & Notices",
+      items: [
+        {
+          label: "Rental Agreement",
+          detail: "Ensure use of current Oregon-compliant lease forms.",
+        },
+        {
+          label: "Required Addendums",
+          detail: [
+            "Lead-Based Paint Disclosure (for properties built before 1978).",
+            "Utility Bill-Back Addendum (if applicable).",
+            "Pest Control Addendum.",
+            "Smoke/Carbon Monoxide Alarm Certification.",
+          ],
+        },
+        {
+          label: "Move-In/Move-Out Inspections",
+          detail:
+            "Conduct a thorough, documented walk-through with the tenant to establish a baseline for the security deposit.",
+        },
+      ],
     },
     {
-      heading: "Screening fees (ORS 90.295)",
-      required: true,
-      body: "Disclose fee and process before payment; charge only actual/customary cost; one fee per 60 days; provide receipt via screening partner.",
-    },
-    {
-      heading: "First-come, first-served (Portland)",
-      required: true,
-      body: "Process complete qualifying applications in order received where local rules apply.",
-    },
-    {
-      heading: "Document decisions",
-      required: true,
-      body: "Keep criteria version, screening partner application, receipt/report, individualized assessment notes, and final decision (all in RentSpree / your files—not on this website).",
-    },
-    {
-      heading: "FCRA adverse action",
-      required: true,
-      body: "If denying based on a consumer report, use screening partner adverse-action workflow or equivalent FCRA notice.",
+      heading: "4. Maintenance Routine",
+      items: [
+        {
+          label: "Quarterly HVAC",
+          detail: "Replace filters and test systems.",
+        },
+        {
+          label: "Exterior Drainage",
+          detail:
+            "Ensure gutters and downspouts are clear, especially before winter, to protect foundations.",
+        },
+        {
+          label: "Seasonal Roof & Siding Checks",
+          detail:
+            "Inspect for damage after high winds or heavy rainfall.",
+        },
+        {
+          label: "Annual Safety Inspection",
+          detail:
+            "Test all alarms, fire extinguishers, and door/window locks.",
+        },
+      ],
     },
   ],
   disclaimer:
-    "AI-generated checklist for convenience only—not legal advice. Consult ORHA or qualified counsel for high-stakes decisions.",
+    "This checklist is provided for informational and organizational purposes only and does not constitute legal, financial, or tax advice. Rental regulations are complex and subject to frequent changes at both the state and municipal levels. We strongly recommend that all property owners consult with a qualified attorney or professional property management firm to ensure that their specific rental agreements, screening processes, and maintenance procedures fully comply with all current laws and regulations. Use of this document is at the user’s own risk.",
 } as const;
 
 export const privacyPolicy = {

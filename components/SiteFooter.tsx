@@ -12,8 +12,8 @@ export function SiteFooter() {
           <Image
             src={brand.wordmark}
             alt={brand.logoAlt}
-            width={1400}
-            height={412}
+            width={964}
+            height={299}
             className="mx-auto h-12 w-auto max-w-full brightness-0 invert drop-shadow-sm"
           />
         </Link>

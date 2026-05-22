@@ -22,8 +22,8 @@ export function SiteHeader() {
           <Image
             src={brand.wordmark}
             alt={brand.logoAlt}
-            width={1400}
-            height={412}
+            width={964}
+            height={299}
             className="hidden h-10 w-auto max-w-[min(100%,36rem)] drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)] md:block lg:h-11"
             priority
           />

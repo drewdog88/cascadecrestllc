@@ -2,7 +2,7 @@
 
 A minimal, image-forward marketing site for Cascade Crest LLC—a Washington State rental company with a property in Portland’s University Park neighborhood (near the University of Portland bluff).
 
-Built with **Next.js 16**, **React**, **TypeScript**, and **Tailwind CSS**. Deployed on [Vercel](https://vercel.com): marketing pages are static; **rental apply** is disclosure-only on-site with handoff to RentSpree (no applicant PII stored—see [docs/SCREENING_SETUP.md](docs/SCREENING_SETUP.md)).
+Built with **Next.js 16**, **React**, **TypeScript**, and **Tailwind CSS**. Deployed on [Vercel](https://vercel.com): marketing pages are static; **rental apply** is disclosure-only on-site, then applicants continue in **RentSpree** (no applicant PII stored on this site).
 
 **Live site:** [https://www.cascadecrestllc.com](https://www.cascadecrestllc.com) (apex redirects to `www`).
 
@@ -57,7 +57,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-Copy [`.env.example`](.env.example) to `.env.local` if you need admin login or a custom RentSpree invite URL locally.
+Copy [`.env.example`](.env.example) to `.env.local` for optional local config (never commit `.env.local`).
 
 ## Production build
 
@@ -68,9 +68,7 @@ npm run start
 
 Open [http://localhost:3000](http://localhost:3000).
 
-Expected build output includes static marketing routes, `/apply`, legal pages, and `/api/admin/login`. Applicant data is **not** stored on this site.
-
-**Admin (landlord only):** [https://www.cascadecrestllc.com/admin/login](https://www.cascadecrestllc.com/admin/login) → hub at `/admin/applications` with links to RentSpree and compliance pages (not an application inbox).
+Expected build output includes static marketing routes, `/apply`, legal pages, and landlord `/admin` routes. Applicant data is **not** stored on this site—use **RentSpree** for applications and screening.
 
 Google Analytics does **not** load from a local production build—only on the Vercel production deploy (`VERCEL_ENV=production`).
 
@@ -80,12 +78,8 @@ Google Analytics does **not** load from a local production build—only on the V
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Vercel (optional) | Canonical base URL for sitemap, robots, and Open Graph. Defaults to `https://www.cascadecrestllc.com`. |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Vercel **Production** only | GA4 measurement ID (`G-…`). Overrides fallback in [`lib/analytics.ts`](lib/analytics.ts). |
-| `ADMIN_SECRET` | Vercel (secret), `.env.local` | Password for `/admin/login` (min 16 characters). Required for admin. |
-| `NEXT_PUBLIC_SCREENING_INVITE_URL` | Vercel Production, `.env.local` | Applicant handoff from `/apply` (default: `https://apply.link/K6AP5pA`) |
-| `SCREENING_INVITE_URL` | Vercel (optional) | Server-side fallback for applicant URL (same as above) |
-| `SCREENING_FEE_DISCLOSURE` | Vercel (optional) | Fee text on apply disclosures |
 
-See [`.env.example`](.env.example) and [docs/SCREENING_SETUP.md](docs/SCREENING_SETUP.md).
+**RentSpree, landlord admin, and apply handoff:** configure in Vercel and `.env.local` per [`.env.example`](.env.example)—do not commit secrets or invite URLs to the repo. Internal setup notes: [docs/SCREENING_SETUP.md](docs/SCREENING_SETUP.md).
 
 ## Editing content
 
@@ -172,7 +166,7 @@ This project is connected to Vercel and deploys from `main` on push to GitHub.
 ```
 app/                    Layout, home page, globals.css, metadata routes
   apply/                Disclosures + RentSpree handoff (noindex, no PII stored)
-  admin/                Password-protected hub (`/admin/applications`) — RentSpree links, no applicant data here
+  admin/                Password-protected landlord hub (no applicant data here)
   api/admin/login/      Admin session cookie
   screening-criteria/   Legal: screening criteria
   privacy/              Legal: privacy policy
@@ -185,7 +179,7 @@ components/             Hero, Neighborhood, …, apply/, admin/
 lib/
   content.ts            Copy and image paths
   legal-content.ts      Screening criteria and policy text
-  screening.ts          RentSpree applicant URL + landlord dashboard URL
+  screening.ts          Screening partner URLs (from env)
   admin-auth.ts         Admin session cookies
   analytics.ts          GA4 ID and production-only gate
   security-headers.ts   CSP and security header values

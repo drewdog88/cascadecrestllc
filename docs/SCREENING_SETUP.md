@@ -7,16 +7,16 @@ Cascade Crest publishes **Oregon disclosures and screening criteria** on this si
 1. Sign up at [https://www.rentspree.com/](https://www.rentspree.com/) (free for landlords).
 2. Configure **applicant-paid** screening for Oregon.
 3. Match package pricing to `SCREENING_FEE_DISCLOSURE` on `/apply`.
-4. Set `SCREENING_INVITE_URL` to your RentSpree invite URL (production default: `https://apply.link/K6AP5pA`).
+4. Set `SCREENING_INVITE_URL` to your RentSpree invite URL in Vercel / `.env.local`.
 
 ## 2. Vercel environment variables
 
 | Variable | Purpose |
 | --- | --- |
-| `NEXT_PUBLIC_SCREENING_INVITE_URL` | Applicant invite on `/apply` (default: `https://apply.link/K6AP5pA`) |
+| `NEXT_PUBLIC_SCREENING_INVITE_URL` | Applicant invite on `/apply` |
 | `SCREENING_INVITE_URL` | Server-side fallback (same URL) |
 | `SCREENING_FEE_DISCLOSURE` | Fee text on `/apply` (ORS 90.295) |
-| `ADMIN_SECRET` | Password for `/admin/login` (min 16 characters) |
+| `ADMIN_SECRET` | Landlord sign-in for `/admin` (set in Vercel only) |
 
 ## 3. Where data lives
 

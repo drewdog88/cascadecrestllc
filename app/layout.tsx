@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Fraunces } from "next/font/google";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { SiteHeader } from "@/components/SiteHeader";
 import { metadataDescription, site } from "@/lib/content";
 import "./globals.css";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${fraunces.variable} scroll-smooth`}>
       <body className="min-h-screen antialiased">
+        <SiteHeader />
         {children}
         <GoogleAnalytics />
       </body>

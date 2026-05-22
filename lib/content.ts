@@ -5,6 +5,21 @@ export const site = {
   heroSubline: "University Park · The Bluff · Steps from campus",
 } as const;
 
+export const brand = {
+  logoAlt: `${site.legalName} — ${site.tagline}`,
+  wordmark: "/images/logo/cascade-crest-wordmark.png",
+  icon: "/images/logo/cascade-crest-icon.png",
+} as const;
+
+export const apply = {
+  ctaLabel: "Apply for tenancy",
+  href: "/apply",
+  screeningProvider: "RentSpree",
+  screeningFeeDisclosure:
+    process.env.SCREENING_FEE_DISCLOSURE ??
+    "$39.99–$49.99 (applicant pays screening partner)",
+} as const;
+
 const photos = {
   stJohnsBridge: "/images/photos/st-johns-bridge.webp",
   portlandBridgeHood: "/images/photos/portland-bridge-hood.webp",
@@ -183,13 +198,20 @@ export const about = {
   title: "About",
   body: `Cascade Crest is a for-profit Washington State rental company backed by a small group of private investors. We steward homes in Portland’s University Park neighborhood—on the bluff, steps from the University of Portland, with TriMet stops and bike routes nearby and a short trip to St. Johns, the Willamette, and Cathedral Park.
 
-This site shares the spirit of the place—not a listing portal. We do not publish our property address or accept inquiries through this website.`,
+This site shares the spirit of the place—not a public listing portal. We do not publish our property street address here. Applicants review screening criteria on this site, then complete the application and background screening with our licensed partner—we do not store applicant personal data on this website.`,
 } as const;
 
 export const footer = {
   affiliation:
     "Not affiliated with the University of Portland.",
   registration: "Registered in Washington State · Property in Oregon",
+  legalLinks: [
+    { label: "Apply", href: "/apply" },
+    { label: "Screening criteria", href: "/screening-criteria" },
+    { label: "Compliance", href: "/compliance" },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Fair housing", href: "/fair-housing" },
+  ] as const,
   photoCredits: [
     {
       label: "Waud Bluff trail map",

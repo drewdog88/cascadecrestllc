@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { hero, site } from "@/lib/content";
+import Link from "next/link";
+import { apply, hero, site } from "@/lib/content";
 
 export function Hero() {
   return (
@@ -29,12 +30,20 @@ export function Hero() {
         <p className="mt-5 max-w-xl font-sans text-base text-purple-mist sm:text-lg">
           {site.tagline}
         </p>
-        <a
-          href="#neighborhood"
-          className="mt-14 inline-block text-xs uppercase tracking-[0.25em] text-purple-light transition-colors hover:text-white"
-        >
-          Explore
-        </a>
+        <div className="mt-14 flex flex-wrap items-center justify-center gap-6 sm:justify-start">
+          <a
+            href="#neighborhood"
+            className="text-xs uppercase tracking-[0.25em] text-purple-light transition-colors hover:text-white"
+          >
+            Explore
+          </a>
+          <Link
+            href={apply.href}
+            className="rounded-md bg-teal px-5 py-2.5 text-xs font-medium uppercase tracking-[0.15em] text-white transition-colors hover:bg-teal/90"
+          >
+            {apply.ctaLabel}
+          </Link>
+        </div>
       </div>
     </section>
   );

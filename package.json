@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "optimize-images": "node scripts/optimize-images.mjs"
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "extract-logo": "node scripts/extract-logo.mjs",
+    "process-logo": "node scripts/process-logo.mjs"
   },
   "dependencies": {
     "next": "16.2.6",

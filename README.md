@@ -175,7 +175,8 @@ A **public-only** static mirror deploys to GitHub Pages when you push the **`git
 ### One-time GitHub setup
 
 1. **Settings → Pages → Build and deployment → Source:** **GitHub Actions**.
-2. **Settings → Secrets and variables → Actions:**
+2. **Settings → Environments → `github-pages` → Deployment branches:** allow the **`github-pages`** branch (GitHub defaults to `main` only; deploy will fail until this is set).
+3. **Settings → Secrets and variables → Actions:**
    - Secret `NEXT_PUBLIC_SCREENING_INVITE_URL` — same RentSpree invite URL as Vercel (so `/apply` works on preview).
    - Optional variable `SCREENING_FEE_DISCLOSURE` — fee text for `/apply` if you use it in production.
 
